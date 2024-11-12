@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Конструктор</title>
+    <style>
+        body,head{
+            background-color: rgb(203, 211, 255);
+        }
+        .draggable {
+            width: 140px;
+            height: 80px;
+            background-color: rgb(88, 114, 243);
+            cursor: pointer;
+            margin: 2px; 
+            border-radius: 5px;
+            text-align: center;
+        }
+        .table {
+            width: 160px;
+            height: 90px;
+            border: 1px solid rgb(55, 85, 233);
+            position: relative;
+            overflow: auto;
+            
+        }
+        .table-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            width: 75%;
+            height: 80%;
+            border-collapse: collapse;
+            border: 1px solid rgb(55, 85, 233);
+            border-radius: 10px;
+        }
+        .td1{
+            width: 160px;
+            height: 60px;
+            border: 1px solid rgb(55, 85, 233);
+            position: relative;
+            overflow: auto;
+            border-radius: 10px;
+        }
+        
+        #textutu1{
+            width: 140px;
+            height: 35px;
+            position: relative;
+        }
+        #table1{
+            border: 1px solid rgb(55, 85, 233);
+            margin-top: 5px;
+            padding: 5px;
+            width: 300px;
+            height: 80%;
+            position: fixed;
+        }
+        input{
+            width: 300px;
+            height: 25px;
+            border: 1px solid rgb(46, 71, 194);
+        }
+        #add-draggable{
+            width: 150px;
+            height: 50px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            background-color:rgb(49, 76, 209);
+        }
+        #add-draggable:hover{
+            background-color: rgb(72, 102, 255);
+            box-shadow: 0 0 10px #0000ff, 0 0 20px #0000ff, 0 0 30px #0000ff;
+
+        }
+        ::spelling-error {
+            background-color: orange;
+        }
+        #vibor{
+            background-color:rgb(49, 76, 209);
+        }
+        #vibor:hover{
+            background-color: rgb(72, 102, 255);
+            box-shadow: 0 0 10px #0000ff, 0 0 20px #0000ff, 0 0 30px #0000ff;
+        }
+        #file:hover{
+            background-color: rgb(72, 102, 255);
+            box-shadow: 0 0 10px #0000ff, 0 0 20px #0000ff, 0 0 30px #0000ff;
+        }
+        #table_1{
+                border: 1px solid black;
+                border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" placeholder="Введите название предмета" id="input1" spellcheck="true">
+    <br>
+    <input type="text" placeholder="Введите номер кабинета" id="input2" spellcheck="true">
+    <br>
+    <button id="add-draggable">Добавить перетаскиваемый блок</button>
+    <input type="file" id="file">
+    <br>
+    <button id="vibor">Выбрать набор предметов</button>
+    <br>
+    <button id="excel_file" onclick="excel_table">Пренести таблицу в excel</button>
+    <br>
+    <div id="table1" class="table"></div>
+
+
+    <table class="table-container" id="table11" align="right">
+
+        <tr>
+            <td class="td1">Урок/День</td>
+            <td class="td1">Понедельник</td>
+            <td class="td1">Вторник</td>
+            <td class="td1">Среда</td>
+            <td class="td1">Четверг</td>
+            <td class="td1">Пятница</td>
+            <td class="td1">Суббота</td>
+        </tr>
+        <tr>
+            <td class="td1">1.</td>
+            <td class="table" id="td1"></td>
+            <td class="table" id="td2"></td>
+            <td class="table" id="td3"></td>
+            <td class="table" id="td4"></td>
+            <td class="table" id="td5"></td>
+            <td class="table" id="td6"></td>
+        </tr>
+        <tr>
+            <td class="td1">2.</td>
+            <td class="table" id="td7"></td>
+            <td class="table" id="td8"></td>
+            <td class="table" id="td9"></td>
+            <td class="table" id="td10"></td>
+            <td class="table" id="td11"></td>
+            <td class="table" id="td12"></td>
+        </tr>
+        <tr>
+            <td class="td1">3.</td>
+            <td class="table" id="td13"></td>
+            <td class="table" id="td14"></td>
+            <td class="table" id="td15"></td>
+            <td class="table" id="td16"></td>
+            <td class="table" id="td17"></td>
+            <td class="table" id="td18"></td>
+        </tr>
+        <tr>
+            <td class="td1">4.</td>
+            <td class="table" id="td19"></td>
+            <td class="table" id="td20"></td>
+            <td class="table" id="td21"></td>
+            <td class="table" id="td22"></td>
+            <td class="table" id="td23"></td>
+            <td class="table" id="td24"></td>
+        </tr>
+        <tr>
+            <td class="td1">5.</td>   
+            <td class="table" id="td25"></td>
+            <td class="table" id="td26"></td>
+            <td class="table" id="td27"></td>
+            <td class="table" id="td28"></td>
+            <td class="table" id="td29"></td>
+            <td class="table" id="td30"></td>
+        </tr>
+        <tr>
+            <td class="td1">6.</td>
+            <td class="table" id="td31"></td>
+            <td class="table" id="td32"></td>
+            <td class="table" id="td33"></td>
+            <td class="table" id="td34"></td>
+            <td class="table" id="td35"></td>
+            <td class="table" id="td36"></td>
+        </tr>
+        <tr>
+            <td class="td1">7.</td>
+            <td class="table" id="td37"></td>
+            <td class="table" id="td38"></td>
+            <td class="table" id="td39"></td>
+            <td class="table" id="td40"></td>
+            <td class="table" id="td41"></td>
+            <td class="table" id="td42"></td>
+        </tr>
+        <tr>
+            <td class="td1">8.</td>
+            <td class="table" id="td43"></td>
+            <td class="table" id="td44"></td>
+            <td class="table" id="td45"></td>
+            <td class="table" id="td46"></td>
+            <td class="table" id="td47"></td>
+            <td class="table" id="td48"></td>
+        </tr>
+    </table>
+    <br>
+    <br>
+    <br>
+    <table id="table_1"></table>
+
+    <script>
+        
+
+
+        document.querySelectorAll('.td1').draggable = false;
+        function handleDragStart(e) {
+            e.dataTransfer.setData("text/plain", e.target.id);
+            e.dataTransfer.effectAllowed = 'copy'; 
+        }
+
+        function handleDragOver(e) {
+            e.dataTransfer.dropEffect = 'copy';
+            e.preventDefault();
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            const data = e.dataTransfer.getData("text");
+            const draggedElement = document.getElementById(data);
+            var clone1 = draggedElement.cloneNode(true);
+            clone1.textContent = draggedElement.textContent;
+            clone1.addEventListener("dragstart", handleDragStart);
+            clone1.classList.add('clone123');
+            clone1.id = draggedElement.id + '_clone' + (document.querySelectorAll('.clone123').length + 1);
+        
+            if (e.target.classList.contains('table') == true) {
+                if (draggedElement.classList.contains('clone123') == true) {
+                    e.target.appendChild(draggedElement);
+                } else {
+                    e.target.appendChild(clone1);
+                }
+            } else {
+                document.getElementById('table1').appendChild(draggedElement);
+            }
+        }
+            
+
+        document.getElementById('add-draggable').addEventListener('click', () => {
+            let newDiv = document.createElement('div');
+            newDiv.id = 'draggable' + (document.querySelectorAll('.draggable').length + 1);
+            newDiv.classList.add('draggable');
+            newDiv.draggable = true;
+            newDiv.addEventListener('dragstart', handleDragStart);
+            document.getElementById('table1').appendChild(newDiv);
+            var value1 = document.querySelector('#input1').value;
+            var value2 = document.querySelector('#input2').value;           
+            let textutu = document.createElement('span');
+            textutu.id = 'textutu1';
+            textutu.innerHTML = value1 +  '<br>' + value2;
+
+            textutu.style.color = 'white';
+            newDiv.appendChild(textutu);
+
+        });
+
+
+        Array.from(document.querySelectorAll('.table')).forEach(table => {
+            table.addEventListener('dragover', handleDragOver);
+            table.addEventListener('drop', handleDrop);
+        });
+
+            document.getElementById('vibor').addEventListener('click', function(){
+                let file = document.getElementById('file').files[0];
+                var reader = new FileReader();
+                reader.onload = function(){
+                    var text_part = reader.result;
+                    const abcd = text_part.split('\n');
+                    var res=[]
+                    for(var i=0; i<abcd.length; i++){
+                        var x = abcd[i].split(' ' )
+                        res.push(x)
+                    }
+                    for(var i=0; i<res.length-1; i++){
+                        let newDiv = document.createElement('div');
+                        newDiv.id = 'draggable' + (document.querySelectorAll('.draggable').length + 1);
+                        newDiv.classList.add('draggable');
+                        newDiv.draggable = true;
+                        newDiv.addEventListener('dragstart', handleDragStart);
+                        document.getElementById('table1').appendChild(newDiv);       
+                        let textutu = document.createElement('span');
+                        textutu.id = 'textutu1';
+                        textutu.innerHTML = res[i][0] +  '\n' + res[i][1] + '\n' + res[i][2];           
+                        textutu.style.color = 'white';
+                        newDiv.appendChild(textutu);
+
+                }}
+                
+                reader.readAsText(file);
+                })
+                
+        const table = document.getElementById('table-container');
+        const td1 = document.getElementById('td1')
+        const td2 = document.getElementById('td2')
+        const td3 = document.getElementById('td3')
+        const td4 = document.getElementById('td4')
+        const td5 = document.getElementById('td5')
+        const td6 = document.getElementById('td6')
+        const td7 = document.getElementById('td7')
+        const td8 = document.getElementById('td8')
+        const td9 = document.getElementById('td9')
+        const td10 = document.getElementById('td10')
+        const td11 = document.getElementById('td11')
+        const td12 = document.getElementById('td12')
+        const td13 = document.getElementById('td13')
+        const td14 = document.getElementById('td14')
+        const td15 = document.getElementById('td15')
+        const td16 = document.getElementById('td16')
+        const td17 = document.getElementById('td17')
+        const td18 = document.getElementById('td18')
+        const td19 = document.getElementById('td19')
+        const td20 = document.getElementById('td20')
+        const td21 = document.getElementById('td21')
+        const td22 = document.getElementById('td22')
+        const td23 = document.getElementById('td23')
+        const td24 = document.getElementById('td24')
+        const td25 = document.getElementById('td25')
+        const td26 = document.getElementById('td26')
+        const td27 = document.getElementById('td27')
+        const td28 = document.getElementById('td28')
+        const td29 = document.getElementById('td29')
+        const td30 = document.getElementById('td30')
+        const td31 = document.getElementById('td31')
+        const td32 = document.getElementById('td32')
+        const td33 = document.getElementById('td33')
+        const td34 = document.getElementById('td34')
+        const td35 = document.getElementById('td35')
+        const td36 = document.getElementById('td36')
+        const td37 = document.getElementById('td37')
+        const td38 = document.getElementById('td38')
+        const td39 = document.getElementById('td39')
+        const td40 = document.getElementById('td40')
+        const td41 = document.getElementById('td41')
+        const td42 = document.getElementById('td42')
+        const td43 = document.getElementById('td43')
+        const td44 = document.getElementById('td44')
+        const td45 = document.getElementById('td45')
+        const td46 = document.getElementById('td46')
+        const td47 = document.getElementById('td47')
+        const td48 = document.getElementById('td48')
+
+        const tdishiki = [
+        td1,
+        td2,
+        td3,
+        td4,
+        td5,
+        td6,
+        td7,
+        td8,
+        td9,
+        td10,
+        td11,
+        td12,
+        td13,
+        td14,
+        td15,
+        td16,
+        td17,
+        td18,
+        td19,
+        td20,
+        td21,
+        td22,
+        td23,
+        td24,
+        td25,
+        td26,
+        td27,
+        td28,
+        td29,
+        td30,
+        td31,
+        td32,
+        td33,
+        td34,
+        td35,
+        td36,
+        td37,
+        td38,
+        td39,
+        td40,
+        td41,
+        td42,
+        td43,
+        td44,
+        td45,
+        td46,
+        td47,
+        td48,
+        ];
+
+        function excel_table(){
+            var table_1 = document.getElementById('table_1');
+                let c = 0
+                for(let i = 0; i < 48; ){
+                    var idudu = 1
+                    if(document.getElementById(tdishiki[c]).getElementsByTagName('div').length>0){
+                        i++
+                        idudu++
+                        let div = document.getElementById(tdishiki[c]).getElementsByTagName('div')[c];
+                        let span = div.getElementsByTagName('span')[0];
+                        c++
+                        var spanText = span.textContent || span.innerText;
+                        var newRow = table_1.insertRow(-1); 
+                        var newCell = newRow.insertCell(0);
+                        newCell.textContent = spanText;
+                        console.log(spanText)
+
+                   }
+                }
+            }
+    </script>
+</body>
+</html>
